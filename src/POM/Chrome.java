@@ -1,4 +1,5 @@
-package pageObjectModel;
+package POM;
+
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.Assert;
@@ -10,13 +11,13 @@ public class Chrome {
 	
 	WebDriver Chrome;
     public String facebookURL = "https://www.facebook.com/";
-    String email="ENTER_EMAIL_HERE";
-    String pass="ENTER_PASSWORD_HERE";
+    String email="EMAIL HERE";
+    String pass="PASSWORD HERE";
    
 	
 	@BeforeMethod
 	public void setup() {
-        System.setProperty("webdriver.chrome.driver", "C:\\Users\\Yamama Abu Liel\\Desktop\\Automation\\chromedriver-win64\\chromedriver.exe");
+        System.setProperty("webdriver.chrome.driver", "C:\\Users\\Yamama Abu Liel\\Desktop\\QA\\Automation\\chromedriver-win64\\chromedriver.exe");
         Chrome=new ChromeDriver();
         Chrome.get(facebookURL);
 
@@ -37,7 +38,12 @@ public class Chrome {
     	LogInPage.email_input(Chrome).sendKeys(email);
     	LogInPage.pass_input(Chrome).sendKeys(pass);
     	LogInPage.loginbtn(Chrome).click();
+    	String expectedResult="Facebook";
+    	String ActualResult=Chrome.getTitle();
+        Assert.assertEquals(expectedResult, ActualResult);
+        
     }
+    
     
   
     
@@ -48,5 +54,4 @@ public class Chrome {
     }
 
     }
-
 
